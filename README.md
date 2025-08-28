@@ -1,6 +1,9 @@
 # Market-Making Simulation
 
 This repository contains a Python simulation of a **market-making strategy** in a high-frequency trading environment. The project models intraday stock price dynamics, order book activity from market participants, and a market maker's bid-ask strategy. Both simple heuristic and Avellaneda-Stoikov optimal market-making strategies are implemented.
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/543c475e-4c52-450a-8821-5beac7b2623d" alt="sm_image" width="586" height="387">
+</p>
 
 ---
 
