@@ -17,13 +17,17 @@ This repository contains a Python simulation of a **market-making strategy** in 
 - **Order Book Simulation**  
   Simulates stochastic bid and ask prices from other market participants:
   
-  $P_{bid,i} = P_{ref}-U_i\cdot S +\epsilon_i, \quad$
+  $P_{bid,i} = P_{ref}-U_i\cdot S +\epsilon_i\quad i=1,...,n_{bids}\quad; \quad \epsilon_i \sim \mathcal{N}(0,\sigma^2)\quad U_i\sim\mathrm{Uniform}(0,1)$
   
-  $P_{ask,i} = P_{ref}+U_i\cdot S - \epsilon_i$
-  - $S$: maximum spread from reference price  
-  - $U_i \sim \mathrm{Uniform}(0,1)$  
-  - $\epsilon_i \sim \mathcal{N}(0,\sigma^2)$  
-  - Bid and ask order arrivals follow Poisson processes  
+  $P_{ask,i} = P_{ref}+U_i\cdot S - \epsilon_i\quad i=1,...,n_{bids}\quad; \quad \epsilon_i \sim \mathcal{N}(0,\sigma^2)\quad U_i\sim\mathrm{Uniform}(0,1).$
+
+  $n_{bids}\sim\mathrm{Poisson}(\lambda_{bid}\cdot\Delta t)\quad\quad n_{asks}\sim\mathrm{Poisson}(\lambda_{ask}\cdot\Delta t)$
+
+  $P_{bid}=max(P_{bid,i})\quad\quad P_{ask}=min(P_{ask,i})\quad\quad\bar{P}=\frac{P_{bid}+P_{ask}}{2}$
+  
+  - $S$: spread range, maximum distance from the stock price for market participants to set buy and sell orders in the simulation.
+  - $\lambda_{bid}, \lambda_{ask}$: order intensities, expected bid and ask order arrivals per unit time
+  - $\sigma$: volatility, spread of noise term to allow ask prices to go below reference and asks above. Set as a percentage of reference price in the simulation
 
 - **Market Maker Bid-Ask Strategy**  
   Simple heuristic:
