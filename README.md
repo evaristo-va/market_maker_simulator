@@ -10,9 +10,9 @@ This repository contains a Python simulation of a **market-making strategy** in 
 ## Features
 
 - **Geometric Brownian Motion (GBM) Price Simulation** : Simulates high-frequency stock prices with drift and volatility:
+$S_{t+\Delta t} = S_t \exp\Big[\big(\mu - \tfrac{1}{2}\sigma^2\big)\Delta t + \sigma \sqrt{\Delta t}\, Z\Big], \quad Z \sim \mathcal{N}(0,1)$
 
-  $S_{t+\Delta t} = S_t \exp\Big[\big(\mu - \tfrac{1}{2}\sigma^2\big)\Delta t + \sigma \sqrt{\Delta t}\, Z\Big], \quad Z \sim \mathcal{N}(0,1)$
-  
+
   - $\mu$: expected return rate per unit time  
   - $\sigma$: volatility per unit time  
   - $\Delta t$: time step of simulation  
