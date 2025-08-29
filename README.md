@@ -35,11 +35,17 @@ $S_{t+\Delta t} = S_t \exp\Big[\big(\mu - \tfrac{1}{2}\sigma^2\big)\Delta t + \s
 - **Market Maker Bid-Ask Strategy**  
   Simple heuristic:
   
-  $\text{Bid} = \bar{P} - \frac{S}{2} - I_F, \quad \text{Ask} = \bar{P} + \frac{S}{2} + I_F$
+  $\text{Bid} = \bar{P} - \frac{S}{2} - q\cdot\alpha_I(\sigma), \quad \text{Ask} = \bar{P} + \frac{S}{2} + q\cdot\alpha_I(\sigma) $
+  with
   
-  - $I_F$: inventory factor to reduce risk from large positions  
-  - If inventory is positive, reduce bid/ask to sell more and buy less  
-  - If inventory is negative, increase bid/ask to buy back shares  
+  $\alpha_I(\sigma)=\frac{IF}{100}\cdot\sigma\cdot P $
+  
+  - $q$: number of shares on inventory
+  - $\alpha_I$: inventory factor to reduce risk from holding large positions
+  - $\sigma$: market volatility
+  - $IF$: percentage change per unit volatility and inventory
+    
+If inventory is positive ($q>0$), reduce bid/ask to sell more and buy less. If inventory is negative ($q<0), increase bid/ask to buy back shares. The larger the volatility in the asset price the larger shift in the spread we should make.
 
 - **Trade Execution Logic**  
   - Buy if `MM_Bid - Market_Ask > cost_per_share`  
