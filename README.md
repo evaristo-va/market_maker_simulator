@@ -16,7 +16,11 @@ $S_{t+\Delta t} = S_t \exp\Big[\big(\mu - \tfrac{1}{2}\sigma^2\big)\Delta t + \s
 
   - $\mu$: expected return rate per unit time  
   - $\sigma$: volatility per unit time  
-  - $\Delta t$: time step of simulation  
+  - $\Delta t$: time step of simulation
+
+  The actuall volatility of the one-step return is
+
+  $\sigma_t=std \left(Log\left[\frac{S_t}{S_{t-1}}\right]\right)=\sigma\sqrt{\Delta t}$
 
 - **Order Book Simulation**  
   Simulates stochastic bid and ask prices from other market participants:
@@ -47,6 +51,10 @@ $S_{t+\Delta t} = S_t \exp\Big[\big(\mu - \tfrac{1}{2}\sigma^2\big)\Delta t + \s
   - $IF$: percentage change per unit volatility and inventory
     
 If inventory is positive ($q>0$), reduce bid/ask to sell more and buy less. If inventory is negative ($q<0), increase bid/ask to buy back shares. The larger the volatility in the asset price the larger shift in the spread we should make.
+
+The volatility in the asset price can be estimated using an exponential weigthed moving average
+
+$\sigma_t^2 = \lambda\cdot\sigma_{t-1}^2 + (1-\lambda)\cdot r_{t-1}^2 $
 
 - **Trade Execution Logic**  
   - Buy if `MM_Bid - Market_Ask > cost_per_share`  
