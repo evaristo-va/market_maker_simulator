@@ -15,7 +15,7 @@ def plot_simulation(df: pd.Series) -> None:
     plt.figure(figsize=(14,6))
     plt.plot(df['Price'], label='Simulated GBM Price')
     plt.plot(df['MidPrice'], label='Dynamic Mid Price', alpha=0.8)
-    plt.plot(df['MM_Bid'], '--', label='MM Bid', color='orange')
+    plt.plot(df['MM_Bid'], '--', label='MM Bid', color='green')
     plt.plot(df['MM_Ask'], '--', label='MM Ask', color='red')
     plt.xlabel('Time Step')
     plt.ylabel('Price')
