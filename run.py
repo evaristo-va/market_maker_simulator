@@ -11,6 +11,7 @@ from typing import Optional, Dict
 def run_simulation(
     T: int = 390, 
     S0: float = 100, 
+    sigma: float = 0.001,
     trade_qty: int = 50, 
     spread: float = 0.001,
     cost_per_share: float = 0.0, 
@@ -29,7 +30,7 @@ def run_simulation(
     realized_pnl_history = []
 
     if prices is None:
-        prices = simulate_prices(T=T, S0=S0)
+        prices = simulate_prices(T=T, S0=S0, sigma=sigma)
 
     for t, price in enumerate(prices):
 
@@ -40,7 +41,7 @@ def run_simulation(
         if use_avellaneda:
             mm_bid, mm_ask = get_bid_ask_avellaneda(mid_price, inventory_qty, t/T, 1.0)
         else:
-            mm_bid, mm_ask = get_bid_ask(mid_price,inventory_qty)
+            mm_bid, mm_ask = get_bid_ask(mid_price,inventory_qty,sigma=sigma)
 
 
         inventory, realized_pnl, bids, asks = execute_trades(inventory,mm_bid,mm_ask,bids,asks,cost_per_share=cost_per_share)
