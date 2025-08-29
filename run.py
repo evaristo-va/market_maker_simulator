@@ -6,6 +6,7 @@ from utils.market_book_simulator import simulate_market_book
 from utils.market_maker import get_bid_ask
 from utils.execute_trades import execute_trades
 from utils.pnl import compute_unrealized_pnl
+from utils.estimate_sigma import sigma_ewma
 from typing import Optional, Dict
 
 def run_simulation(
@@ -32,7 +33,17 @@ def run_simulation(
     if prices is None:
         prices = simulate_prices(T=T, S0=S0, sigma=sigma)
 
+    dt = 1/T
+    sigma2 = sigma**2 * dt 
+
     for t, price in enumerate(prices):
+        
+        if t==0:
+            sigma = np.sqrt(sigma2)
+        else:
+            r = np.log(price/prices[t-1])
+            sigma2 = sigma_ewma(prev_sigma2=sigma2,current_return=r, lam=0.94)
+            sigma=np.sqrt(sigma2)
 
         bids, asks, market_bid, market_ask, mid_price = simulate_market_book(price, lambda_bid = 100, lambda_ask = 100, spread_ratio = spread, vol_ratio = 0.0005)
 
