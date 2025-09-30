@@ -17,6 +17,7 @@ def simulate_market_book(
     vol = P_ref * vol_ratio
 
     if n_bids > 0:
+        #bid_prices = P_ref - np.abs(np.random.normal(0, scale=spread_range/2,  size=n_bids))
         bid_prices = P_ref - np.random.rand(n_bids) * spread_range + np.random.normal(0,vol,size=n_bids)
         bid_qty = np.random.randint(1,100, size=n_bids)
         bids = list(zip(bid_prices,bid_qty))
@@ -28,6 +29,7 @@ def simulate_market_book(
         market_bid = P_ref
 
     if n_asks > 0:
+        #ask_prices = P_ref + np.abs(np.random.normal(loc=0, scale=spread_range/2,  size=n_bids))
         ask_prices = P_ref + np.random.rand(n_asks) * spread_range - np.random.normal(0,vol,size=n_asks)
         # quantity of stock per bid and ask
         ask_qty = np.random.randint(1,100, size=n_asks)
