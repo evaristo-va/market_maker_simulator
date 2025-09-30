@@ -40,7 +40,7 @@ $S_{t+\Delta t} = S_t \exp\Big[\big(\mu - \tfrac{1}{2}\sigma^2\big)\Delta t + \s
 - **Market Maker Bid-Ask Strategy**  
   Simple heuristic:
   
-  $\text{Bid} = \bar{P} - \frac{S}{2} - q\cdot\alpha_I(\sigma_t), \quad \text{Ask} = \bar{P} + \frac{S}{2} + q\cdot\alpha_I(\sigma) $
+  $\text{Bid} = \bar{P} - \frac{S}{2} - q\cdot\alpha_I(\sigma_t), \quad \text{Ask} = \bar{P} + \frac{S}{2} - q\cdot\alpha_I(\sigma) $
   with
   
   $\alpha_I(\sigma)=\frac{IF}{100}\cdot\sigma_t\cdot P $
