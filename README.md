@@ -50,7 +50,24 @@ $S_{t+\Delta t} = S_t \exp\Big[\big(\mu - \tfrac{1}{2}\sigma^2\big)\Delta t + \s
   - $\sigma$: market volatility (per time step)
   - $IF$: percentage change per unit volatility and inventory
     
-If inventory is positive ($q>0$), reduce bid/ask to sell more and buy less. If inventory is negative ($q<0), increase bid/ask to buy back shares. The larger the volatility in the asset price the larger shift in the spread we should make.
+  If inventory is positive ($q>0$), reduce bid/ask to sell more and buy less. If inventory is negative ($q<0), increase bid/ask to buy back     shares. The larger the volatility in the asset price the larger shift in the spread we should make.
+
+
+  Avellaneda-Stoikov
+
+  Reservation price:
+
+  $S(\bar{P},q_t,t)=\bar{P}-q_t\gamma\sigma_t^2(T-t)$
+
+  Optimal spread:
+
+  $\delta=\gamma\sigma_t^2(T-t)+\frac{2}{\gamma}Ln\left(1+\frac{\gamma}{k}\right)$
+
+  parameters:
+  - $\gamma$: risk aversion
+  - $k$: market sensitivity rate: measure competitiviness of the market
+  - $\sigma_t$: asset volatility
+  - $q_t$: inventory quanity
 
 The volatility in the asset price can be estimated using an exponential weigthed moving average
 
